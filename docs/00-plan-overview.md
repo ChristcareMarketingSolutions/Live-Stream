@@ -26,7 +26,7 @@ certifies each milestone.
 
 ## How to use it (step by step)
 
-This pack is already installed in the `virtual-daw` repository: `CLAUDE.md` at the root and the
+This pack is already installed in the `Live-Stream` repository: `CLAUDE.md` at the root and the
 plan in `docs/`. Claude Code loads `CLAUDE.md` automatically at the start of every session.
 
 1. Open a Claude Code session on this repository.

@@ -27,7 +27,7 @@ Audio tests cannot assess "sounds good" — that is a manual check (M-xxx) and m
 |---|---|
 | T-001 | App loads with no console errors/warnings |
 | T-002 | Hash routes work; reload on `#/settings` restores view |
-| T-003 | Production build served under `/virtual-daw/` subpath loads all assets (vite preview with base) |
+| T-003 | Production build served under `/Live-Stream/` subpath loads all assets (vite preview with base) |
 | T-101..106 | See roadmap Phase 1 |
 | T-201..207 | See roadmap Phase 2 (T-207 = fuzz/stress test, aka T-STRESS) |
 | T-301..305 | See roadmap Phase 3 |

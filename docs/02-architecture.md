@@ -229,7 +229,7 @@ IndexedDB database `stagecraft`, stores: `concerts` (key id), `presets` (key id)
 ## 11. Routing and deployment
 
 - Hash routing (`#/live`) — GitHub Pages has no SPA fallback, hash routes never 404.
-- Vite `base` = `process.env.BASE_PATH ?? '/'`; the GitHub Actions workflow sets `BASE_PATH=/virtual-daw/`.
+- Vite `base` = `process.env.BASE_PATH ?? '/'`; the GitHub Actions workflow sets `BASE_PATH=/Live-Stream/`.
 - All asset URLs built with `import.meta.env.BASE_URL`.
 - Service worker generated at build (e.g. `vite-plugin-pwa`, decided by ADR in Phase 0) or hand-written.
 

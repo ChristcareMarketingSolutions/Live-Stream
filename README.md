@@ -1,4 +1,4 @@
-# STAGECRAFT (virtual-daw)
+# STAGECRAFT (Live-Stream)
 
 A browser-based live-performance keyboard workstation, in the spirit of MainStage, with a mini-DAW to follow.
 Connect a MIDI keyboard, pick a patch such as "Worship Piano + Pad", and play: layers, splits, setlists, and
