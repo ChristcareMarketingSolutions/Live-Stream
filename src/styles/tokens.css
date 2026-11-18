@@ -43,3 +43,22 @@
   --statusbar-h: 28px;
   --sidebar-w: 184px;
 }
+
+:root {
+  /* Keyboard */
+  --key-white: #e9e6df;
+  --key-white-down: #f2b84b;
+  --key-black: #15181d;
+  --key-black-down: #c98d22;
+  --key-line: #9aa0a8;
+
+  /* Layer / zone colours (distinct, readable on the dark ground) */
+  --zone-1: #f2b84b;
+  --zone-2: #6cb6ff;
+  --zone-3: #4cc38a;
+  --zone-4: #d38cf0;
+  --zone-5: #f07f6b;
+  --zone-6: #5fd4d0;
+  --zone-7: #c9d36a;
+  --zone-8: #a0a8ff;
+}

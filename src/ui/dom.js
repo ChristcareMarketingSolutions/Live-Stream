@@ -26,3 +26,10 @@ function appendChildren(el, children) {
     else el.append(child instanceof Node ? child : document.createTextNode(String(child)));
   }
 }
+
+/** replaceChildren that skips null/false entries (conditional sections). */
+export function replace(el, ...children) {
+  el.replaceChildren(
+    ...children.flat().filter((c) => c !== null && c !== undefined && c !== false),
+  );
+}

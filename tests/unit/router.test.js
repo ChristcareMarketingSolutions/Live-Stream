@@ -26,9 +26,11 @@ describe('parseHash', () => {
 });
 
 describe('workspaces', () => {
-  it('only Live and Settings are enabled in Phase 0', () => {
+  it('Live, Edit, Library and Settings are enabled after Phase 4', () => {
     expect(WORKSPACES.filter((w) => isWorkspaceEnabled(w.id)).map((w) => w.id)).toEqual([
       'live',
+      'edit',
+      'library',
       'settings',
     ]);
   });

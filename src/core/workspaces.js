@@ -8,9 +8,9 @@
 /** @type {readonly Workspace[]} */
 export const WORKSPACES = Object.freeze([
   { id: 'live', label: 'Live', icon: 'live' },
-  { id: 'edit', label: 'Edit', icon: 'edit', availableInPhase: 4 },
+  { id: 'edit', label: 'Edit', icon: 'edit' },
   { id: 'mixer', label: 'Mixer', icon: 'mixer', availableInPhase: 6 },
-  { id: 'library', label: 'Library', icon: 'library', availableInPhase: 3 },
+  { id: 'library', label: 'Library', icon: 'library' },
   { id: 'synth', label: 'Synth', icon: 'synth', availableInPhase: 7 },
   { id: 'daw', label: 'DAW', icon: 'daw', availableInPhase: 8 },
   { id: 'settings', label: 'Settings', icon: 'settings' },

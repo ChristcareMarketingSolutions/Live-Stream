@@ -41,3 +41,26 @@ Newest entries first. Template: `docs/templates/dev-log-entry.md`.
 **Next**
 
 - Phase 1 (audio engine & first synth) after Exit Gate 0 sign-off.
+
+## 2026-11-18 — Phases 1–4 — Work in progress (saved, not deployed, not signed off)
+
+**Done (code complete, partly verified)**
+
+- Phase 1: shared AudioContext, master bus (gain → limiter → meter worklet), envelopes, voice stealing, Instrument base, Panic, audio settings, sound test.
+- Phase 2: MIDI parser/access/hot-plug, held-note table, sustain, controllers, on-screen 88-key keyboard, computer keyboard, MIDI settings and monitor, `?debug` test hook.
+- Phase 3: pack loader with offline cache, sampler, Salamander Grand Piano pack (CC-BY 3.0, 90 samples, 7 MB), synthesised EP / tonewheel / pipe organ / strings / choir / pads / bass / analog synth (32 presets, level-matched to -12 dBFS), Library view with credits.
+- Phase 4: concert model, IndexedDB autosave, import/export, note router, patch engine, chain manager, shared reverb + delay, Edit view, Live view, program change.
+
+**Tests**
+
+- Unit: 11 files, 91 tests pass (incl. 10 000-event stuck-note fuzz test).
+- Browser probes: audio starts, piano pack loads (206 MB decoded), notes start and release to 0 voices, no console errors, all presets render without NaN or clicks.
+- Not yet done: Playwright e2e suites for Phases 1–4, phase certificates, manual hardware checks.
+
+**Open questions**
+
+- Product owner is deciding between web/PWA, Electron/Tauri desktop wrapper, or a native (JUCE/ASIO) engine for Windows, after a latency measurement.
+
+**Next**
+
+- Wait for product owner decision. Then: e2e tests, certificates, deploy.

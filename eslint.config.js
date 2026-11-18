@@ -11,14 +11,18 @@ export default [
     },
   },
   {
-    files: ['*.config.js', 'tests/**/*.js'],
+    files: ['src/audio/worklets/**/*.js'],
+    languageOptions: { globals: { ...globals.audioWorklet } },
+  },
+  {
+    files: ['*.config.js', 'tests/**/*.js', 'scripts/**/*.mjs'],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   {
     rules: {
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       eqeqeq: ['error', 'always'],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     },
   },
 ];
