@@ -11,18 +11,18 @@ certifies each milestone.
 
 ## What is in the pack
 
-| File (repo path) | Purpose | Who reads it |
-|---|---|---|
-| `CLAUDE.md` | Standing rules Claude must obey in every session. Lives at the repo root; Claude Code loads it automatically. | Claude (every session) |
-| `docs/01-product-spec.md` | Scope, users, numbered functional and non-functional requirements, exclusions, glossary. | You + Claude |
-| `docs/02-architecture.md` | Module design, data model, audio graph, MIDI routing, state, events, decisions. | Claude |
-| `docs/03-roadmap.md` | Phases 0–9: tasks, files, acceptance tests, exit gates. **The work programme.** | You + Claude |
-| `docs/04-audio-midi-engineering.md` | Low-level audio/MIDI rules: latency, voices, sustain, patch switching, memory. | Claude |
-| `docs/05-instruments-and-samples.md` | How each instrument is built, sample formats, memory budget, licensing. | You + Claude |
-| `docs/06-testing-qa.md` | Test strategy, automated tests, manual hardware checklist, latency measurement. | You + Claude |
-| `docs/07-prompts.md` | Copy-paste prompts for each phase, reviews, bug fixes and resuming work. | You |
-| `docs/08-risk-register.md` | Technical, licensing and schedule risks with mitigations. | You + Claude |
-| `docs/templates/*` | Development log, phase completion certificate, ADR (decision record). | Claude |
+| File (repo path)                     | Purpose                                                                                                       | Who reads it           |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `CLAUDE.md`                          | Standing rules Claude must obey in every session. Lives at the repo root; Claude Code loads it automatically. | Claude (every session) |
+| `docs/01-product-spec.md`            | Scope, users, numbered functional and non-functional requirements, exclusions, glossary.                      | You + Claude           |
+| `docs/02-architecture.md`            | Module design, data model, audio graph, MIDI routing, state, events, decisions.                               | Claude                 |
+| `docs/03-roadmap.md`                 | Phases 0–9: tasks, files, acceptance tests, exit gates. **The work programme.**                               | You + Claude           |
+| `docs/04-audio-midi-engineering.md`  | Low-level audio/MIDI rules: latency, voices, sustain, patch switching, memory.                                | Claude                 |
+| `docs/05-instruments-and-samples.md` | How each instrument is built, sample formats, memory budget, licensing.                                       | You + Claude           |
+| `docs/06-testing-qa.md`              | Test strategy, automated tests, manual hardware checklist, latency measurement.                               | You + Claude           |
+| `docs/07-prompts.md`                 | Copy-paste prompts for each phase, reviews, bug fixes and resuming work.                                      | You                    |
+| `docs/08-risk-register.md`           | Technical, licensing and schedule risks with mitigations.                                                     | You + Claude           |
+| `docs/templates/*`                   | Development log, phase completion certificate, ADR (decision record).                                         | Claude                 |
 
 ## How to use it (step by step)
 
@@ -61,15 +61,15 @@ The original blueprint was good in direction. These changes were made so it is b
 
 ## Realistic programme
 
-| Milestone | Phases | Indicative effort (focused Claude sessions) |
-|---|---|---|
-| M0 Foundation | 0 | 1–2 |
-| M1 Playable synth + keyboard + MIDI | 1–2 | 3–5 |
-| M2 Real instruments | 3 | 3–6 (mostly sample sourcing) |
-| M3 Live performance workstation | 4 | 4–6 |
-| **M4 V1 public release** | 5 | 2–3 |
-| M5 Mixer, effects, synth designer (V2) | 6–7 | 5–8 |
-| M6 MIDI DAW (V3) | 8 | 5–8 |
-| M7 Audio DAW (V4) | 9 | 5–8 |
+| Milestone                              | Phases | Indicative effort (focused Claude sessions) |
+| -------------------------------------- | ------ | ------------------------------------------- |
+| M0 Foundation                          | 0      | 1–2                                         |
+| M1 Playable synth + keyboard + MIDI    | 1–2    | 3–5                                         |
+| M2 Real instruments                    | 3      | 3–6 (mostly sample sourcing)                |
+| M3 Live performance workstation        | 4      | 4–6                                         |
+| **M4 V1 public release**               | 5      | 2–3                                         |
+| M5 Mixer, effects, synth designer (V2) | 6–7    | 5–8                                         |
+| M6 MIDI DAW (V3)                       | 8      | 5–8                                         |
+| M7 Audio DAW (V4)                      | 9      | 5–8                                         |
 
 Effort depends heavily on how quickly you can test on real hardware and give feedback.

@@ -87,6 +87,7 @@ Keep these scripts working. Add new ones to this section when you create them.
 ## 8. Definition of Done (every task)
 
 A task is done only when all are true:
+
 1. Code implemented and linked to requirement IDs.
 2. Unit tests for any pure logic; e2e test for any user-facing flow that can be automated.
 3. `npm run lint`, `npm test`, `npm run build` all pass.

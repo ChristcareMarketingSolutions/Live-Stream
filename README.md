@@ -4,9 +4,31 @@ A browser-based live-performance keyboard workstation, in the spirit of MainStag
 Connect a MIDI keyboard, pick a patch such as "Worship Piano + Pad", and play: layers, splits, setlists, and
 sustain, all running in the browser and hosted on GitHub Pages.
 
-**Status:** Planning complete; Phase 0 (foundation) is next.
+**Status:** Phase 0 (foundation) delivered, awaiting sign-off. No sound yet; that arrives in Phase 1.
+
+**Live site:** https://christcaremarketingsolutions.github.io/Live-Stream/
+
+## Run locally
+
+Requires Node 20.19+ (22 recommended).
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm test           # unit tests
+npm run test:e2e   # browser tests (run `npx playwright install chromium` once first)
+npm run build      # production build in dist/
+```
+
+## Deploy
+
+Every push to `main` builds and deploys to GitHub Pages (`.github/workflows/deploy.yml`).
+One-time setup: repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Supported browsers: desktop Chrome and Edge. Safari has no Web MIDI support.
 
 ## Plan documents
+
 - [Plan overview](docs/00-plan-overview.md): start here
 - [Product specification](docs/01-product-spec.md)
 - [Architecture](docs/02-architecture.md)

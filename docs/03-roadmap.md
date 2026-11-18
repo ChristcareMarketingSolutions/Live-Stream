@@ -4,18 +4,18 @@ Each phase is a milestone with tasks, deliverables, acceptance tests and an **Ex
 A phase is closed only when the product owner signs the Phase Completion Certificate
 (`docs/templates/phase-certificate.md`) and records it in the table below.
 
-| Phase | Title | Release | Status | Signed off |
-|---|---|---|---|---|
-| 0 | Foundation | — | Not started | |
-| 1 | Audio engine & first synth | — | Not started | |
-| 2 | Keyboard & MIDI | — | Not started | |
-| 3 | Instrument library | — | Not started | |
-| 4 | Live performance engine | — | Not started | |
-| 5 | V1 hardening & release | **V1** | Not started | |
-| 6 | Mixer & effects | V2 | Not started | |
-| 7 | Synth designer & presets | **V2** | Not started | |
-| 8 | MIDI DAW | **V3** | Not started | |
-| 9 | Audio DAW & export | **V4** | Not started | |
+| Phase | Title                      | Release | Status      | Signed off |
+| ----- | -------------------------- | ------- | ----------- | ---------- |
+| 0     | Foundation                 | —       | Not started |            |
+| 1     | Audio engine & first synth | —       | Not started |            |
+| 2     | Keyboard & MIDI            | —       | Not started |            |
+| 3     | Instrument library         | —       | Not started |            |
+| 4     | Live performance engine    | —       | Not started |            |
+| 5     | V1 hardening & release     | **V1**  | Not started |            |
+| 6     | Mixer & effects            | V2      | Not started |            |
+| 7     | Synth designer & presets   | **V2**  | Not started |            |
+| 8     | MIDI DAW                   | **V3**  | Not started |            |
+| 9     | Audio DAW & export         | **V4**  | Not started |            |
 
 Test IDs (T-xxx) are defined in `06-testing-qa.md`. Requirement IDs are in `01-product-spec.md`.
 
@@ -26,6 +26,7 @@ Test IDs (T-xxx) are defined in `06-testing-qa.md`. Requirement IDs are in `01-p
 **Objective:** a running, deployable, empty shell with tooling, tests and CI in place.
 
 Tasks
+
 1. `npm init`; add Vite, Vitest, Playwright, ESLint, Prettier with **exact pinned versions** (check latest stable at the time).
 2. `vite.config.js` with `base` from `BASE_PATH` env; `npm run dev/build/preview/test/test:e2e/lint` scripts.
 3. App shell: top bar (name, audio status placeholder disabled, panic disabled), sidebar with
@@ -52,6 +53,7 @@ Acceptance: T-001 (loads, no errors), T-002 (routing + refresh), T-003 (Pages UR
 **Objective:** real sound from a simple built-in synth with correct note lifecycle and safe output.
 
 Tasks
+
 1. `audio/audio-context.js`: single context, `latencyHint` from settings, resume on gesture,
    `audio:state` events; UI "Click to start audio" overlay when suspended. [AUD-001, AUD-002]
 2. `audio/master-bus.js`: master gain (dB), limiter AudioWorklet (or DynamicsCompressor fallback, ADR),
@@ -76,6 +78,7 @@ Manual: M-101 hear clean tone; M-102 meter moves; M-103 no crackle while UI is i
 **Objective:** play the synth from a real MIDI keyboard, the on-screen keyboard and the computer keyboard.
 
 Tasks
+
 1. `midi/midi-parser.js` (pure, full unit tests incl. running status not needed — Web MIDI delivers full messages; note-on vel 0). [MIDI-003]
 2. `midi/midi-access.js`: permissions, device list, hot-plug, "All inputs" option; error/unsupported states with instructions. [MIDI-001, MIDI-002, MIDI-012]
 3. `midi/input-router.js`: merge sources, global velocity curve, emit `midi:event`. [MIDI-008]
@@ -99,6 +102,7 @@ Manual: M-201 connect keyboard, play; M-202 unplug while holding notes → silen
 **Objective:** realistic core instruments, loaded on demand, cached for offline.
 
 Tasks
+
 1. Pack manifest schema + validator; pack loader with progress, decode, Cache API storage, delete. [INS-010] (see 05)
 2. Generic sampler engine: key/velocity mapping, nearest-sample pitch shift (`playbackRate`), velocity crossfade optional, release samples optional, loop points, per-voice filter for velocity brightness.
 3. Source, trim, normalise and encode packs per `05-instruments-and-samples.md`; log every asset in `ASSET-LICENSES.md` **before** commit.
@@ -122,6 +126,7 @@ Manual: M-301 sound quality review of each instrument (product owner rates 1–5
 **Objective:** concerts, sets, patches, layers, splits, switching — the MainStage-style core.
 
 Tasks
+
 1. Concert model + validation + defaults (pure). Example concert "Sunday Worship" (scenario S1) shipped as a template.
 2. Storage: IndexedDB `db.js`, concert repo, autosave, Ctrl+S, restore last concert; import/export with validation errors shown clearly. [STO-001..004]
 3. Note router (pure): channel/zone/velocity matching, transpose/octave. [LIVE-010, LIVE-020]
@@ -145,6 +150,7 @@ Manual: M-401 scenario S1 full run with product owner's keyboard; M-402 scenario
 **Objective:** make V1 reliable enough for a real Sunday service.
 
 Tasks
+
 1. PWA: manifest, icons, service worker (app shell precache), packs cached; update-available prompt, never auto-reload. [APP-004, APP-005]
 2. Error handling sweep: every async path surfaces a user-readable message; global error toast; audio context interruption (device change, sleep) recovery.
 3. Performance: profile note path (NFR-01), long-task check during play, memory soak (NFR-07), bundle size (NFR-05).

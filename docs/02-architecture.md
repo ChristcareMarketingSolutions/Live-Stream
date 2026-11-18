@@ -107,7 +107,7 @@ class Instrument {
   /** Estimated decoded memory in bytes (for the pool's budget). */
   get memoryBytes() {}
   /** Start a note now. Returns a voice handle used to release exactly this voice. */
-  noteOn(note, velocity /*0..1*/, time /*ctx time*/) {}  // -> VoiceHandle
+  noteOn(note, velocity /*0..1*/, time /*ctx time*/) {} // -> VoiceHandle
   /** Release a specific voice (sustain is handled outside, by the layer). */
   noteOff(voiceHandle, time) {}
   /** Continuous controls. */
@@ -149,7 +149,7 @@ Value: list of `{ layerId, voiceHandle, playedNote }`.
 - **Layer chain** = instrument instance (from pool) → channel strip → master + sends.
 - Instrument instances come from `instruments/pool.js` keyed by `(instrumentId, presetId)`.
   Two patches using "Grand Piano / Concert" share the instance; switching between them is instant.
-  If the same instrument is used with different presets in two layers *at the same time*, the pool
+  If the same instrument is used with different presets in two layers _at the same time_, the pool
   creates separate instances (presets differ).
 - **Switching:** new patch becomes "active" for **new** note-ons immediately. The previous patch's
   layer chains stay connected until (a) no held/sustained voices remain and (b) release tail time
@@ -162,16 +162,16 @@ Value: list of `{ layerId, voiceHandle, playedNote }`.
 
 ## 7. Events (event-bus)
 
-| Event | Payload | Producer → Consumers |
-|---|---|---|
-| `midi:devices` | `[{id,name,manufacturer,state}]` | midi-access → UI |
-| `midi:event` | `MidiEvent` | input-router → patch-engine, UI monitor, DAW recorder |
-| `notes:active` | `Set<number>` (batched) | patch-engine → keyboard UI |
-| `patch:changed` | `{concertId,patchId}` | patch-engine → UI, storage |
-| `pack:progress` | `{packId,loaded,total}` | pack-loader → UI |
-| `audio:state` | `{state,sampleRate,baseLatency,outputLatency}` | audio-context → UI |
-| `audio:meters` | `{master:[l,r], layers:{id:[l,r]}}` (≤ 30 Hz) | meter worklet → UI |
-| `error` | `{code,message,detail}` | anyone → UI toast, dev log |
+| Event           | Payload                                        | Producer → Consumers                                  |
+| --------------- | ---------------------------------------------- | ----------------------------------------------------- |
+| `midi:devices`  | `[{id,name,manufacturer,state}]`               | midi-access → UI                                      |
+| `midi:event`    | `MidiEvent`                                    | input-router → patch-engine, UI monitor, DAW recorder |
+| `notes:active`  | `Set<number>` (batched)                        | patch-engine → keyboard UI                            |
+| `patch:changed` | `{concertId,patchId}`                          | patch-engine → UI, storage                            |
+| `pack:progress` | `{packId,loaded,total}`                        | pack-loader → UI                                      |
+| `audio:state`   | `{state,sampleRate,baseLatency,outputLatency}` | audio-context → UI                                    |
+| `audio:meters`  | `{master:[l,r], layers:{id:[l,r]}}` (≤ 30 Hz)  | meter worklet → UI                                    |
+| `error`         | `{code,message,detail}`                        | anyone → UI toast, dev log                            |
 
 `MidiEvent = { type:'noteon'|'noteoff'|'cc'|'pitchbend'|'program'|'aftertouch', channel, note?, velocity?, controller?, value?, sourceId, timeStamp }`.
 
@@ -191,23 +191,44 @@ Value: list of `{ layerId, voiceHandle, playedNote }`.
   "schemaVersion": 1,
   "id": "uuid",
   "name": "Sunday Worship",
-  "createdAt": "ISO", "updatedAt": "ISO",
-  "settings": { "tempo": 72, "masterVolumeDb": -6, "reverb": {"preset":"hall","returnDb":-8}, "delay": {"sync":"1/4","feedback":0.3,"returnDb":-14} },
-  "sets": [ { "id": "uuid", "name": "Opening", "patchIds": ["p1","p2"] } ],
+  "createdAt": "ISO",
+  "updatedAt": "ISO",
+  "settings": {
+    "tempo": 72,
+    "masterVolumeDb": -6,
+    "reverb": { "preset": "hall", "returnDb": -8 },
+    "delay": { "sync": "1/4", "feedback": 0.3, "returnDb": -14 }
+  },
+  "sets": [{ "id": "uuid", "name": "Opening", "patchIds": ["p1", "p2"] }],
   "patches": {
     "p1": {
-      "id": "p1", "name": "Worship Piano", "programChange": 1, "tempo": null, "notes": "",
+      "id": "p1",
+      "name": "Worship Piano",
+      "programChange": 1,
+      "tempo": null,
+      "notes": "",
       "layers": [
         {
-          "id": "l1", "name": "Piano",
+          "id": "l1",
+          "name": "Piano",
           "instrument": { "id": "grand-piano", "presetId": "concert", "params": {} },
           "zone": { "low": 21, "high": 108 },
           "velocity": { "low": 1, "high": 127 },
           "channel": 0,
-          "transpose": 0, "octave": 0,
-          "volumeDb": 0, "pan": 0, "mute": false, "solo": false,
+          "transpose": 0,
+          "octave": 0,
+          "volumeDb": 0,
+          "pan": 0,
+          "mute": false,
+          "solo": false,
           "sends": { "reverb": -12, "delay": -60 },
-          "respond": { "sustain": true, "expression": true, "modWheel": true, "pitchBend": true, "bendRange": 2 },
+          "respond": {
+            "sustain": true,
+            "expression": true,
+            "modWheel": true,
+            "pitchBend": true,
+            "bendRange": 2
+          },
           "inserts": []
         }
       ]
@@ -235,11 +256,11 @@ IndexedDB database `stagecraft`, stores: `concerts` (key id), `presets` (key id)
 
 ## 12. Decision log (initial ADRs to write in Phase 0)
 
-| ADR | Decision |
-|---|---|
-| 0001 | Vanilla JS + ES modules + JSDoc, no framework. |
+| ADR  | Decision                                                                                |
+| ---- | --------------------------------------------------------------------------------------- |
+| 0001 | Vanilla JS + ES modules + JSDoc, no framework.                                          |
 | 0002 | Raw Web Audio for live engine; Tone.js only in DAW phases unless an ADR says otherwise. |
-| 0003 | Hash routing for GitHub Pages. |
-| 0004 | Held-note table owns note release. |
-| 0005 | Instrument packs as separate fetchable assets cached with the Cache API. |
-| 0006 | Testing: Vitest + Playwright (Chromium), OfflineAudioContext for audio assertions. |
+| 0003 | Hash routing for GitHub Pages.                                                          |
+| 0004 | Held-note table owns note release.                                                      |
+| 0005 | Instrument packs as separate fetchable assets cached with the Cache API.                |
+| 0006 | Testing: Vitest + Playwright (Chromium), OfflineAudioContext for audio assertions.      |
