@@ -2,6 +2,28 @@
 
 Newest entries first. Template: `docs/templates/dev-log-entry.md`.
 
+## 2026-11-19 — Phase 4 — Verified and deployed
+
+**Done**
+
+- Browser acceptance tests `tests/e2e/phase4-live.spec.js` [LIVE-001..042, STO-001..004, MIX-001].
+- Corrected the roadmap status table and Phase 0 sign-off (earlier edits had not applied).
+
+**Tests**
+
+- Unit 94 pass; e2e 43 pass: patch switching while holding and with pedal down, switch time
+  under 50 ms, split scenario S2, autosave and reload, export/import round trip, bad-file error,
+  learn zone, performance lock, reverb/delay settings.
+- Manual checks needed: M-401 (scenario S1), M-402 (scenario S2).
+
+**Open questions**
+
+- Drag-and-drop reordering and zone handles: build in Phase 5, or accept buttons/note names?
+
+**Next**
+
+- Product owner hardware checks for Phases 1–4, then Phase 5 (V1 hardening: offline app, latency, browser matrix).
+
 ## 2026-11-19 — Phase 3 — Verified and deployed
 
 **Done**

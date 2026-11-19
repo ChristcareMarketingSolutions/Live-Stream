@@ -4,7 +4,7 @@ A browser-based live-performance keyboard workstation, in the spirit of MainStag
 Connect a MIDI keyboard, pick a patch such as "Worship Piano + Pad", and play: layers, splits, setlists, and
 sustain, all running in the browser and hosted on GitHub Pages.
 
-**Status:** Phase 0 (foundation) delivered, awaiting sign-off. No sound yet; that arrives in Phase 1.
+**Status:** Phases 1–4 delivered (live keyboard workstation: piano, organs, strings, choir, pads, bass; layers, splits, setlists; MIDI keyboards; offline instrument cache). Awaiting hardware checks before V1 hardening (Phase 5).
 
 **Live site:** https://christcaremarketingsolutions.github.io/Live-Stream/
 

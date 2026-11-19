@@ -54,5 +54,5 @@ None.
 
 ## 8. Sign-off
 
-- [ ] Exit Gate 0 criteria met
-- Product owner: ____________ Date: ________
+- [x] Exit Gate 0 criteria met (site confirmed live by the product owner)
+- Product owner: approved in chat, MIT licence accepted. Date: 2026-11-18

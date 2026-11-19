@@ -4,18 +4,18 @@ Each phase is a milestone with tasks, deliverables, acceptance tests and an **Ex
 A phase is closed only when the product owner signs the Phase Completion Certificate
 (`docs/templates/phase-certificate.md`) and records it in the table below.
 
-| Phase | Title                      | Release | Status      | Signed off |
-| ----- | -------------------------- | ------- | ----------- | ---------- |
-| 0     | Foundation                 | —       | Not started |            |
-| 1     | Audio engine & first synth | —       | Not started |            |
-| 2     | Keyboard & MIDI            | —       | Not started |            |
-| 3     | Instrument library         | —       | Not started |            |
-| 4     | Live performance engine    | —       | Not started |            |
-| 5     | V1 hardening & release     | **V1**  | Not started |            |
-| 6     | Mixer & effects            | V2      | Not started |            |
-| 7     | Synth designer & presets   | **V2**  | Not started |            |
-| 8     | MIDI DAW                   | **V3**  | Not started |            |
-| 9     | Audio DAW & export         | **V4**  | Not started |            |
+| Phase | Title                      | Release | Status                                                      | Signed off                          |
+| ----- | -------------------------- | ------- | ----------------------------------------------------------- | ----------------------------------- |
+| 0     | Foundation                 | —       | Done                                                        | 2026-11-18 (product owner, in chat) |
+| 1     | Audio engine & first synth | —       | Delivered 2026-11-19, awaiting hardware checks M-101..103   |                                     |
+| 2     | Keyboard & MIDI            | —       | Delivered 2026-11-19, awaiting hardware checks M-201..205   |                                     |
+| 3     | Instrument library         | —       | Delivered 2026-11-19, awaiting sound review M-301..302      |                                     |
+| 4     | Live performance engine    | —       | Delivered 2026-11-19, awaiting scenarios S1, S2 on hardware |                                     |
+| 5     | V1 hardening & release     | **V1**  | Not started                                                 |                                     |
+| 6     | Mixer & effects            | V2      | Not started                                                 |                                     |
+| 7     | Synth designer & presets   | **V2**  | Not started                                                 |                                     |
+| 8     | MIDI DAW                   | **V3**  | Not started                                                 |                                     |
+| 9     | Audio DAW & export         | **V4**  | Not started                                                 |                                     |
 
 Test IDs (T-xxx) are defined in `06-testing-qa.md`. Requirement IDs are in `01-product-spec.md`.
 
