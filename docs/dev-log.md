@@ -2,6 +2,27 @@
 
 Newest entries first. Template: `docs/templates/dev-log-entry.md`.
 
+## 2026-11-19 — Phase 3 — Verified and deployed
+
+**Done**
+
+- Browser acceptance tests `tests/e2e/phase3-instruments.spec.js` [INS-001..010].
+- Added the missing `ASSET-LICENSES.md` row for the Salamander piano samples.
+
+**Tests**
+
+- Unit 94 pass; e2e 30 pass. Piano reloads from the offline cache with the network off;
+  every instrument sounds at C2/C4/C6, soft and loud, without clipping; velocity response checked.
+- Manual checks needed: M-301 (rate each sound), M-302.
+
+**Open questions**
+
+- Sampled strings, choir and electric piano: need licence-clean sources (risk R-03).
+
+**Next**
+
+- Phase 4 verification: concerts, patches, layers, splits, storage.
+
 ## 2026-11-19 — Phase 2 — Verified and deployed
 
 **Done**
