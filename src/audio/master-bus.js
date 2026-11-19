@@ -4,10 +4,11 @@ import { smoothSet } from './envelope.js';
 
 /**
  * Master output (AUD-003, AUD-004):
- *   input → master gain → safety limiter → meter (worklet) → destination
- * The limiter is a DynamicsCompressorNode set up as a brick-wall-style
- * limiter (ADR-0007). If AudioWorklet is unavailable the meter falls back
- * to an AnalyserNode polled on animation frames.
+ *   input → master gain → limiter → safety clipper → meter (worklet) → destination
+ * The limiter is a fast DynamicsCompressorNode. It is not instantaneous, so a
+ * soft clipper after it guarantees the output never exceeds -0.2 dBFS (ADR-0007).
+ * If AudioWorklet is unavailable the meter falls back to an AnalyserNode
+ * polled on animation frames.
  *
  * @param {BaseAudioContext} ctx
  * @param {{ volumeDb?: number, limiter?: boolean, onPeaks?: (peaks: number[]) => void }} opts
@@ -23,6 +24,10 @@ export async function createMasterBus(ctx, { volumeDb = -6, limiter = true, onPe
   comp.ratio.value = 20;
   comp.attack.value = 0.002;
   comp.release.value = 0.08;
+
+  const clipper = ctx.createWaveShaper();
+  clipper.curve = softClipCurve();
+  clipper.oversample = 'none'; // oversampling filters can overshoot the ceiling
 
   let meter;
   let analysers = null;
@@ -48,9 +53,11 @@ export async function createMasterBus(ctx, { volumeDb = -6, limiter = true, onPe
   function wire() {
     gain.disconnect();
     comp.disconnect();
+    clipper.disconnect();
     if (limiterOn) {
       gain.connect(comp);
-      comp.connect(meter);
+      comp.connect(clipper);
+      clipper.connect(meter);
     } else {
       gain.connect(meter);
     }
@@ -93,4 +100,21 @@ function createAnalyserMeter(ctx, node) {
       });
     },
   };
+}
+
+/**
+ * Transfer curve: linear up to `knee`, then a tanh shoulder that approaches
+ * `ceiling`. Inputs beyond ±1 are clamped by the WaveShaper to the curve ends,
+ * so the output is bounded by `ceiling` whatever comes in.
+ */
+export function softClipCurve(size = 4096, knee = 0.8, ceiling = 0.977) {
+  const curve = new Float32Array(size);
+  const range = ceiling - knee;
+  for (let i = 0; i < size; i++) {
+    const x = (i / (size - 1)) * 2 - 1;
+    const a = Math.abs(x);
+    const y = a <= knee ? a : knee + range * Math.tanh((a - knee) / range);
+    curve[i] = Math.sign(x) * y;
+  }
+  return curve;
 }

@@ -2,6 +2,26 @@
 
 Newest entries first. Template: `docs/templates/dev-log-entry.md`.
 
+## 2026-11-19 — Phase 1 — Verified and deployed
+
+**Done**
+
+- Browser acceptance tests for Phase 1 (`tests/e2e/phase1-audio.spec.js`) [AUD-001..006].
+- Fixed: master output overshoot (+1.2 dBFS with 64 loud voices). Added soft clipper after
+  the limiter (ADR-0007) [AUD-004].
+- Smoke tests updated for the live app (concert loads, phone width on every view).
+- Phase 0 sign-off recorded; Phase 1 certificate written.
+
+**Tests**
+
+- Unit 93 pass; e2e 15 pass. Every preset renders at about −12 dBFS with no NaN, no clicks,
+  and releases decay below −80 dB.
+- Manual checks needed: M-101..M-103 (see `docs/certificates/phase-1.md`).
+
+**Next**
+
+- Phase 2 verification: MIDI, keyboards, sustain.
+
 ## 2026-11-18 — Phase 0 — Foundation
 
 **Done**
