@@ -57,6 +57,8 @@ for (const route of ['live', 'edit', 'library', 'settings']) {
   test(`no horizontal page scroll at phone width: ${route}`, async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 740 });
     await openApp(page, route);
+    // Wider fallback fonts (as on CI runners) must not push the page sideways either.
+    await page.addStyleTag({ content: '* { letter-spacing: 0.6px !important; }' });
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
     );

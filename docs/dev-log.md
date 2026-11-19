@@ -2,6 +2,23 @@
 
 Newest entries first. Template: `docs/templates/dev-log-entry.md`.
 
+## 2026-11-19 — Phase 2 — Verified and deployed
+
+**Done**
+
+- Browser acceptance tests `tests/e2e/phase2-midi.spec.js` [MIDI-001..012].
+- Fixed: per-instrument polyphony (stress test showed 144 long pad voices) [AUD-005].
+- Fixed: status bar could widen the page by 2 px with other fonts (CI failure) [APP-002].
+
+**Tests**
+
+- Unit 94 pass; e2e 24 pass, including a 3 000-event in-browser stress test.
+- Manual checks needed: M-201..M-205 (`docs/certificates/phase-2.md`).
+
+**Next**
+
+- Phase 3 verification: instrument library, piano pack, offline cache.
+
 ## 2026-11-19 — Phase 1 — Verified and deployed
 
 **Done**

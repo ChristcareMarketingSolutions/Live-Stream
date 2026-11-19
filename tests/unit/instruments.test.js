@@ -63,3 +63,12 @@ describe('instruments [INS-001..010, T-301, T-302]', () => {
     expect(validateManifest(bad2).errors.join()).toMatch(/0-127/);
   });
 });
+
+describe('polyphony limits [AUD-005, NFR-03]', () => {
+  it('the piano allows 64 voices; heavy synth sounds are capped lower', () => {
+    const by = Object.fromEntries(INSTRUMENTS.map((i) => [i.id, i.maxVoices]));
+    expect(by['grand-piano']).toBe(64);
+    for (const id of ['pads', 'strings', 'choir']) expect(by[id]).toBeLessThanOrEqual(32);
+    for (const i of INSTRUMENTS) expect(i.maxVoices, i.id).toBeGreaterThan(0);
+  });
+});

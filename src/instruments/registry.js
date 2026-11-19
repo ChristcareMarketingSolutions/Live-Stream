@@ -24,15 +24,22 @@ export const INSTRUMENTS = [
     engine: 'sampler',
     pack: 'grand-piano',
     sizeMb: 7,
+    maxVoices: 64,
   },
-  { id: 'electric-piano', name: 'Electric Piano', category: 'Keys', engine: 'synth' },
-  { id: 'tonewheel', name: 'Tonewheel Organ', category: 'Organ', engine: 'synth' },
-  { id: 'pipe-organ', name: 'Pipe Organ', category: 'Organ', engine: 'synth' },
-  { id: 'strings', name: 'Strings', category: 'Orchestral', engine: 'synth' },
-  { id: 'choir', name: 'Choir', category: 'Orchestral', engine: 'synth' },
-  { id: 'pads', name: 'Ambient Pads', category: 'Pads', engine: 'synth' },
-  { id: 'synth-bass', name: 'Synth Bass', category: 'Bass', engine: 'synth' },
-  { id: 'analog-synth', name: 'Analog Synth', category: 'Synth', engine: 'synth' },
+  {
+    id: 'electric-piano',
+    name: 'Electric Piano',
+    category: 'Keys',
+    engine: 'synth',
+    maxVoices: 48,
+  },
+  { id: 'tonewheel', name: 'Tonewheel Organ', category: 'Organ', engine: 'synth', maxVoices: 48 },
+  { id: 'pipe-organ', name: 'Pipe Organ', category: 'Organ', engine: 'synth', maxVoices: 40 },
+  { id: 'strings', name: 'Strings', category: 'Orchestral', engine: 'synth', maxVoices: 32 },
+  { id: 'choir', name: 'Choir', category: 'Orchestral', engine: 'synth', maxVoices: 32 },
+  { id: 'pads', name: 'Ambient Pads', category: 'Pads', engine: 'synth', maxVoices: 32 },
+  { id: 'synth-bass', name: 'Synth Bass', category: 'Bass', engine: 'synth', maxVoices: 16 },
+  { id: 'analog-synth', name: 'Analog Synth', category: 'Synth', engine: 'synth', maxVoices: 32 },
 ];
 
 export const getInstrument = (id) => INSTRUMENTS.find((i) => i.id === id) ?? null;
@@ -68,7 +75,7 @@ export function createInstrument(ctx, instrumentId, presetId, { packStore } = {}
   if (!meta || !preset) throw new Error(`Unknown instrument "${instrumentId}"`);
   if (meta.engine === 'sampler') {
     if (!packStore) throw new Error('Sampler instruments need a pack store');
-    return new Sampler(ctx, { pack: packStore.get(meta.pack), preset });
+    return new Sampler(ctx, { pack: packStore.get(meta.pack), preset, maxVoices: meta.maxVoices });
   }
-  return new PolySynth(ctx, preset);
+  return new PolySynth(ctx, preset, { maxVoices: meta.maxVoices });
 }
